@@ -1,4 +1,4 @@
-package com.example.cryptoapp.database
+package com.example.cryptoapp.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
