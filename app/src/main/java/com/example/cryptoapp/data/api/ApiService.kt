@@ -1,4 +1,4 @@
-package com.example.cryptoapp.api
+package com.example.cryptoapp.data.api
 
 import com.example.cryptoapp.pojo.CoinInfoListOfData
 import com.example.cryptoapp.pojo.CoinPriceInfoRawData
