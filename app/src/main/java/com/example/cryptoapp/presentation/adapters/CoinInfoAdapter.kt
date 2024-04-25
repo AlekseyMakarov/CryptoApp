@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoapp.R
 import com.example.cryptoapp.data.CoinMapper
@@ -13,13 +14,7 @@ import com.example.cryptoapp.domain.CoinInfoEntity
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) :
-    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
-
-    var coinInfoList: List<CoinInfoEntity> = listOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    ListAdapter<CoinInfoEntity, CoinInfoAdapter.CoinInfoViewHolder>(CoinInfoDiffCallback()) {
 
     var onCoinClickListener: OnCoinClickListener? = null
 
@@ -33,10 +28,8 @@ class CoinInfoAdapter(private val context: Context) :
         return CoinInfoViewHolder(binding)
     }
 
-    override fun getItemCount() = coinInfoList.size
-
     override fun onBindViewHolder(holder: CoinInfoViewHolder, position: Int) {
-        val coin = coinInfoList[position]
+        val coin = getItem(position)
         when (holder.binding) {
             is ItemCoinInfoBinding -> {
                 with(holder.binding) {
