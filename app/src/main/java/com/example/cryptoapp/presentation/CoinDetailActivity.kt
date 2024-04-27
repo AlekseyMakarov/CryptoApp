@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.cryptoapp.data.CoinMapper
 import com.example.cryptoapp.databinding.ActivityCoinDetailBinding
 import com.squareup.picasso.Picasso
 
@@ -30,10 +29,10 @@ class CoinDetailActivity : AppCompatActivity() {
                 tvMinPrice.text = it.lowDay
                 tvMaxPrice.text = it.highDay
                 tvLastMarket.text = it.lastMarket
-                tvLastUpdate.text = CoinMapper.mapTimestampToString(it.lastUpdate)
+                tvLastUpdate.text = it.lastUpdate
                 tvFromSymbol.text = it.fromSymbol
                 tvToSymbol.text = it.toSymbol
-                Picasso.get().load(CoinMapper.getFullImageUrl(it.imageUrl)).into(ivLogoCoin)
+                Picasso.get().load(it.imageUrl).into(ivLogoCoin)
             }
 
         })

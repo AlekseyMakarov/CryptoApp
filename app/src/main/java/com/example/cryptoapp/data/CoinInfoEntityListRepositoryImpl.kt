@@ -30,13 +30,18 @@ class CoinInfoEntityListRepositoryImpl(application: Application) : CoinInfoEntit
 
     override suspend fun loadData() {
         while (true) {
-            val coinNameListDto = apiService.getTopCoinsInfo(limit = 50)
-            val coinNameString = CoinMapper.coinNameListDtoToString(coinNameListDto)
-            val coinInfoJsonDto = apiService.getFullPriceList(fSyms = coinNameString)
-            val listCoinInfoDto = CoinMapper.coinInfoJsonDtoToListCoinInfoDto(coinInfoJsonDto)
-            database.insertPriceList(
-                CoinMapper.listCoinInfoDtoToListCoinInfoDBModel(listCoinInfoDto)
-            )
+            try {
+                val coinNameListDto = apiService.getTopCoinsInfo(limit = 50)
+                val coinNameString = CoinMapper.coinNameListDtoToString(coinNameListDto)
+                val coinInfoJsonDto = apiService.getFullPriceList(fSyms = coinNameString)
+                val listCoinInfoDto = CoinMapper.coinInfoJsonDtoToListCoinInfoDto(coinInfoJsonDto)
+                database.insertPriceList(
+                    CoinMapper.listCoinInfoDtoToListCoinInfoDBModel(listCoinInfoDto)
+                )
+            } catch (_: Exception) {
+
+            }
+
             delay(10000)
         }
     }

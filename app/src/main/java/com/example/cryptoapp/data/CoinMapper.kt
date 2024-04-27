@@ -28,7 +28,7 @@ class CoinMapper {
                     highDay,
                     lowDay,
                     lastMarket,
-                    imageUrl
+                    getFullImageUrl(imageUrl)
                 )
             }
         }
@@ -44,7 +44,7 @@ class CoinMapper {
                     fromSymbol,
                     toSymbol,
                     price,
-                    lastUpdate,
+                    mapTimestampToFormattedTime(lastUpdate),
                     highDay,
                     lowDay,
                     lastMarket,
@@ -78,7 +78,7 @@ class CoinMapper {
             return result
         }
 
-        fun mapTimestampToString(timestamp: Long?): String {
+        fun mapTimestampToFormattedTime(timestamp: Long?): String {
             return convertTimestampToTime(timestamp)
         }
 
