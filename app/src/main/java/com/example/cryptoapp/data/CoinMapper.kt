@@ -1,13 +1,17 @@
 package com.example.cryptoapp.data
 
-import com.example.cryptoapp.data.api.ApiFactory
-import com.example.cryptoapp.data.api.CoinInfoDto
-import com.example.cryptoapp.data.api.CoinInfoJsonDto
-import com.example.cryptoapp.data.api.CoinNameListDto
+import com.example.cryptoapp.data.network.ApiFactory
+import com.example.cryptoapp.data.network.CoinInfoDto
+import com.example.cryptoapp.data.network.CoinInfoJsonDto
+import com.example.cryptoapp.data.network.CoinNameListDto
 import com.example.cryptoapp.data.database.CoinInfoDBModel
 import com.example.cryptoapp.domain.CoinInfoEntity
-import com.example.cryptoapp.utils.convertTimestampToTime
 import com.google.gson.Gson
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class CoinMapper {
 
@@ -79,7 +83,13 @@ class CoinMapper {
         }
 
         fun mapTimestampToFormattedTime(timestamp: Long?): String {
-            return convertTimestampToTime(timestamp)
+            if (timestamp == null) return ""
+            val stamp = Timestamp(timestamp * 1000)
+            val date = Date(stamp.time)
+            val pattern = "HH:mm:ss"
+            val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+            sdf.timeZone = TimeZone.getDefault()
+            return sdf.format(date)
         }
 
         fun getFullImageUrl(imageUrl: String?): String {

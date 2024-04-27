@@ -1,4 +1,4 @@
-package com.example.cryptoapp.data.api
+package com.example.cryptoapp.data.network
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose

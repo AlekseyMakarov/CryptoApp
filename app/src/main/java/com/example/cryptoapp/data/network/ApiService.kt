@@ -1,4 +1,4 @@
-package com.example.cryptoapp.data.api
+package com.example.cryptoapp.data.network
 
 import retrofit2.http.GET
 import retrofit2.http.Query

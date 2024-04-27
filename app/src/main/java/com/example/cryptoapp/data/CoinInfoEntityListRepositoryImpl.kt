@@ -3,7 +3,7 @@ package com.example.cryptoapp.data
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.example.cryptoapp.data.api.ApiFactory
+import com.example.cryptoapp.data.network.ApiFactory
 import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.example.cryptoapp.domain.CoinInfoEntityListRepository
