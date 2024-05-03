@@ -1,6 +1,5 @@
 package com.example.cryptoapp.presentation
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +32,7 @@ class CoinListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = setAdapter()
+        binding.rvCoinPriceList.itemAnimator = null
         setObservers(adapter)
     }
 
@@ -50,10 +50,11 @@ class CoinListFragment : Fragment() {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(
-                        if (isLandscape())
+                        if (Utils.isLandscape(requireActivity()))
                             R.id.fragment_container_land else
                             R.id.fragment_container,
-                        CoinDetailFragment.newInstance(coinInfo.fromSymbol)
+                        CoinDetailFragment.newInstance(coinInfo.fromSymbol),
+                        "details"
                     )
                     .addToBackStack(null)
                     .commit()
@@ -66,9 +67,5 @@ class CoinListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun isLandscape(): Boolean {
-        return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     }
 }
