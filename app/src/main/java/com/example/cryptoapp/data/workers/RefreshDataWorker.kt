@@ -5,7 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.example.cryptoapp.data.CoinMapper
+import com.example.cryptoapp.data.mappers.CoinMapper
 import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.data.network.ApiFactory
 import kotlinx.coroutines.delay

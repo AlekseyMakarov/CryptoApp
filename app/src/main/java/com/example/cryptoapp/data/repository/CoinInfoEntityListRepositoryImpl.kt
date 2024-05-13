@@ -1,16 +1,15 @@
-package com.example.cryptoapp.data
+package com.example.cryptoapp.data.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
-import com.example.cryptoapp.data.network.ApiFactory
 import com.example.cryptoapp.data.database.AppDatabase
+import com.example.cryptoapp.data.mappers.CoinMapper
 import com.example.cryptoapp.data.workers.RefreshDataWorker
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.example.cryptoapp.domain.CoinInfoEntityListRepository
-import kotlinx.coroutines.delay
 
 class CoinInfoEntityListRepositoryImpl(private val application: Application) :
     CoinInfoEntityListRepository {

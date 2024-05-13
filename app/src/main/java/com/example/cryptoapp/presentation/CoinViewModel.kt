@@ -3,7 +3,7 @@ package com.example.cryptoapp.presentation
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.cryptoapp.data.CoinInfoEntityListRepositoryImpl
+import com.example.cryptoapp.data.repository.CoinInfoEntityListRepositoryImpl
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.example.cryptoapp.domain.GetCoinInfoEntityListUseCase
 import com.example.cryptoapp.domain.GetCoinInfoEntityUseCase

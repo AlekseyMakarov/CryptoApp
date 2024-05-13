@@ -1,9 +1,9 @@
-package com.example.cryptoapp.data
+package com.example.cryptoapp.data.mappers
 
 import com.example.cryptoapp.data.network.ApiFactory
-import com.example.cryptoapp.data.network.CoinInfoDto
-import com.example.cryptoapp.data.network.CoinInfoJsonDto
-import com.example.cryptoapp.data.network.CoinNameListDto
+import com.example.cryptoapp.data.network.model.CoinInfoDto
+import com.example.cryptoapp.data.network.model.CoinInfoJsonDto
+import com.example.cryptoapp.data.network.model.CoinNameListDto
 import com.example.cryptoapp.data.database.CoinInfoDBModel
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.google.gson.Gson
