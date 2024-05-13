@@ -11,7 +11,6 @@ import com.example.cryptoapp.domain.LoadDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = CoinInfoEntityListRepositoryImpl(application)
@@ -30,9 +29,8 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     init {
-        scope.launch {
-            loadDataUseCase()
-        }
+
+        loadDataUseCase()
     }
 
     override fun onCleared() {
