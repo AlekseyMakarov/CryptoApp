@@ -5,18 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
-import com.example.cryptoapp.data.database.AppDatabase
+import com.example.cryptoapp.data.database.CoinInfoDao
 import com.example.cryptoapp.data.mappers.CoinMapper
 import com.example.cryptoapp.data.workers.RefreshDataWorker
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.example.cryptoapp.domain.CoinInfoEntityListRepository
+import javax.inject.Inject
 
-class CoinInfoEntityListRepositoryImpl(private val application: Application) :
+class CoinInfoEntityListRepositoryImpl @Inject constructor(
+    private val application: Application,
+    private val coinInfoDao: CoinInfoDao
+) :
     CoinInfoEntityListRepository {
-    private val database = AppDatabase.getInstance(application).coinPriceInfoDao()
     override fun getCoinInfoEntityList(): LiveData<List<CoinInfoEntity>> {
         return MediatorLiveData<List<CoinInfoEntity>>().apply {
-            addSource(database.getPriceList()) {
+            addSource(coinInfoDao.getPriceList()) {
                 value = CoinMapper.listCoinInfoDBModelToListCoinInfoEntity(it)
             }
         }
@@ -24,7 +27,7 @@ class CoinInfoEntityListRepositoryImpl(private val application: Application) :
 
     override fun getCoinInfoEntity(coinName: String): LiveData<CoinInfoEntity> {
         return MediatorLiveData<CoinInfoEntity>().apply {
-            addSource(database.getPriceInfoAboutCoin(coinName)) {
+            addSource(coinInfoDao.getPriceInfoAboutCoin(coinName)) {
                 value = CoinMapper.coinInfoDBModelToCoinInfoEntity(it)
             }
         }

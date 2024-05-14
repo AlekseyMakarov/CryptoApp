@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoapp.R
 import com.example.cryptoapp.databinding.ItemCoinInfoBinding
+import com.example.cryptoapp.di.CoinListActivityQualifier
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
-class CoinInfoAdapter(private val context: Context) :
+class CoinInfoAdapter @Inject constructor(@CoinListActivityQualifier private val context: Context) :
     ListAdapter<CoinInfoEntity, CoinInfoAdapter.CoinInfoViewHolder>(CoinInfoDiffCallback()) {
 
     var onCoinClickListener: OnCoinClickListener? = null

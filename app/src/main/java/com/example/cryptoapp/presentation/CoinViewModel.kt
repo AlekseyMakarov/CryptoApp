@@ -1,9 +1,7 @@
 package com.example.cryptoapp.presentation
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.cryptoapp.data.repository.CoinInfoEntityListRepositoryImpl
+import androidx.lifecycle.ViewModel
 import com.example.cryptoapp.domain.CoinInfoEntity
 import com.example.cryptoapp.domain.GetCoinInfoEntityListUseCase
 import com.example.cryptoapp.domain.GetCoinInfoEntityUseCase
@@ -11,12 +9,14 @@ import com.example.cryptoapp.domain.LoadDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import javax.inject.Inject
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = CoinInfoEntityListRepositoryImpl(application)
-    private val getCoinInfoEntityListUseCase = GetCoinInfoEntityListUseCase(repository)
-    private val getCoinInfoEntityUseCase = GetCoinInfoEntityUseCase(repository)
-    private val loadDataUseCase = LoadDataUseCase(repository)
+class CoinViewModel @Inject constructor(
+    private val getCoinInfoEntityListUseCase: GetCoinInfoEntityListUseCase,
+    private val getCoinInfoEntityUseCase: GetCoinInfoEntityUseCase,
+    private val loadDataUseCase: LoadDataUseCase
+) : ViewModel() {
+
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
