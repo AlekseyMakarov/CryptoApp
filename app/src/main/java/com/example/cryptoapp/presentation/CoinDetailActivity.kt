@@ -35,7 +35,7 @@ class CoinDetailActivity : AppCompatActivity() {
             return
         }
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: ""
-        viewModel.getDetailInfo(fromSymbol).observe(this, {
+        viewModel.getDetailInfo(fromSymbol).observe(this) {
             with(binding) {
                 tvPrice.text = it.price
                 tvMinPrice.text = it.lowDay
@@ -47,7 +47,7 @@ class CoinDetailActivity : AppCompatActivity() {
                 Picasso.get().load(it.imageUrl).into(ivLogoCoin)
             }
 
-        })
+        }
     }
 
     companion object {
