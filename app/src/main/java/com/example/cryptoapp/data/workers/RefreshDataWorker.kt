@@ -2,6 +2,7 @@ package com.example.cryptoapp.data.workers
 
 import android.content.Context
 import androidx.work.CoroutineWorker
+import androidx.work.ListenableWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
@@ -45,6 +46,23 @@ class RefreshDataWorker @Inject constructor(
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>()
                 .build()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val apiService: ApiService,
+        private val coinInfoDao: CoinInfoDao
+    ) : WorkerChildFactory {
+        override fun create(
+            context: Context,
+            workerParameters: WorkerParameters
+        ): ListenableWorker {
+            return RefreshDataWorker(
+                context,
+                workerParameters,
+                apiService,
+                coinInfoDao
+            )
         }
     }
 }

@@ -8,16 +8,18 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class CoinWorkerFactory @Inject constructor(
-    private val workerProviders: @JvmSuppressWildcards Map<Class<out ListenableWorker>, Provider<ListenableWorker>>
-): WorkerFactory() {
+    private val workerProviders: @JvmSuppressWildcards Map<Class<out WorkerChildFactory>, Provider<WorkerChildFactory>>
+) : WorkerFactory() {
     override fun createWorker(
         appContext: Context,
         workerClassName: String,
         workerParameters: WorkerParameters
     ): ListenableWorker? {
-        return when (workerClassName){
+        return when (workerClassName) {
             RefreshDataWorker::class.qualifiedName -> {
-                workerProviders[RefreshDataWorker::class.java]?.get()
+                workerProviders[RefreshDataWorker.Factory::class.java]
+                    ?.get()
+                    ?.create(appContext, workerParameters)
             }
 
             else -> null
