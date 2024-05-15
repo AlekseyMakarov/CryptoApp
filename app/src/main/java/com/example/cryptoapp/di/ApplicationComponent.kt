@@ -8,9 +8,15 @@ import dagger.BindsInstance
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [DomainModule::class, DataModule::class, ViewModelModule::class])
+@Component(
+    modules = [
+        DomainModule::class,
+        DataModule::class,
+        ViewModelModule::class,
+        WorkerModule::class
+    ]
+)
 interface ApplicationComponent {
-
 
     fun inject(fragment: CoinDetailFragment)
 

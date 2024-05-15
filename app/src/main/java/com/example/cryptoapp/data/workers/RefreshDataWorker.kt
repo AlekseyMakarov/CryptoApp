@@ -9,8 +9,9 @@ import com.example.cryptoapp.data.database.CoinInfoDao
 import com.example.cryptoapp.data.mappers.CoinMapper
 import com.example.cryptoapp.data.network.ApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class RefreshDataWorker(
+class RefreshDataWorker @Inject constructor(
     context: Context,
     workerParameters: WorkerParameters,
     private val apiService: ApiService,
@@ -18,7 +19,7 @@ class RefreshDataWorker(
 
 ) : CoroutineWorker(context, workerParameters) {
 
-//    private val apiService = ApiFactory.apiService
+    //    private val apiService = ApiFactory.apiService
 //    private val coinInfoDao = AppDatabase.getInstance(context).coinPriceInfoDao()
     override suspend fun doWork(): Result {
 
